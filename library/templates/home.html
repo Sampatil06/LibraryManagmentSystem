@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+</head>
+<body>
+    <h1>Welcome to the Library Management System</h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="/api/books/">View Books</a> |
+        
+        <!-- Logout Form (POST Request) -->
+        <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" style="background: none; border: none; color: blue; cursor: pointer; text-decoration: underline;">
+                Logout
+            </button>
+        </form>
+    {% else %}
+        <a href="/accounts/login/">Login</a> | 
+        <a href="/api/register/">Register</a>
+    {% endif %}
+</body>
+</html>
